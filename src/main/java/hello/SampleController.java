@@ -6,13 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 public class SampleController {
 
 	@RequestMapping("/")
-	@ResponseBody
-	String home() {
-		return "Hello World!";
+//	@ResponseBody
+	public String index() {
+		return "index";
 	}
 
 /*	public static void main(String[] args) {
