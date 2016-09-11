@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Customer Database</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+	<h1>Result</h1>
+	<p th:text="'First Name: ' + ${customer.firstName}" />
+	<p th:text="'Last Name: ' + ${customer.lastName}" />
+	<a href="/customer">Customer Form</a>
+	<h1>Customers List</h1>
+	<table id="customer" border='1'>
+		<tr>
+			<th>id</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+		</tr>
+	</table>
+
+	<script type="text/javascript">
+    var service = 'http://localhost:8080';
+    $(document).ready(function(){
+    	$.ajax({
+    		type:"GET",
+    		url:service + "/viewCustomers",
+    		success: function(data){
+    			var trHTML='';
+    			$.each(data, function(i,item){
+    				trHTML+='<tr><td>'+item.id+'</td><td>'+item.firstName+'</td><td>'+item.lastName+'</td></tr>';
+    			});
+    			$('#customer').append(trHTML);
+    		},
+    		error: function(msg){
+    			alert(msg.responseText);
+    		}
+    	});
+    })
+
+    </script>
+</body>
+</html>
